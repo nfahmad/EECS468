@@ -1,0 +1,158 @@
+<!--
+    Name of program contained in the file: Assignment2.html
+    Brief description of the program: This program solves exercises 2.1, 2.2, and 2.3
+    Inputs: None
+    Output: Webpage with labeled exercise outputs
+    All collaborators: N/A
+    Other Sources for the Code: Stack Overflow, W3Schools
+    Author's full name: Nabeel Ahmad
+    Creation date: 02/2/2024
+-->
+
+<!--Beginning of html file-->
+<html>
+    <!--Displays the exercise name underlined and above the output-->
+    <p><u>Exercise 2.1 - Looping a triangle</u></p>
+    <!--Allows the triangle to be displayed with the scripting statements-->
+    <div id="triangle"></div>
+    <!--Beginning of script element which contains scripting statements-->
+    <script>
+        //Declares a variable "triangleLength" which is blank
+        let triangleLength = "";
+        /* i = 1 executes once before the execution of the code block
+        i <= 10 executes for as long as 10 is greater than or equal to i
+        i++ executes every time the code block has been executed
+        */
+        for (let i = 1; i <= 10; i++) {
+            //Declares a variable "rowCount" which is blank
+            let rowCount = "";
+            /* j = 1 executes once before the execution of the code block
+            j <= i executes for as long as i is greater than or equal to j
+            j++ executes every time the code block has been executed
+            */
+            for (let j = 1; j <= i; j++) {
+                //Adjusts the rowCount by adding an x to the string
+                rowCount += "x";
+            }
+            //Makes sure each row is outputted to a new line
+            triangleLength += rowCount + "\n";
+        }
+        //This will get the elements that need to be displayed by text using their unique identifier, "triangle"
+        document.getElementById("triangle").innerText = triangleLength;
+    //End of script element
+    </script>
+    <!--Separates exercises with a line across the page-->
+    <hr>
+    <!--Displays the exercise name underlined and above the output-->
+    <p><u>Exercise 2.2 - FizzBuzz</u></p>
+    <!--Beginning of script element which contains scripting statements-->
+    <script>
+        /* i = 1 executes once before the execution of the code block
+        i <= 100 executes for as long as 100 is greater than or equal to i
+        i++ executes every time the code block has been executed
+        */
+        for (let i = 1; i <= 100; i++) {
+            //If the current index is divisible by both 4 and 7, this runs
+            if (i % 4 == 0 && i % 7 == 0) {
+                //This will output that the current number is divisible by both 4 and 7
+                document.write("Divisible by both 4 and 7" + "<br>");
+            //If the current index is divisible by 4, this runs
+            } else if (i % 4 == 0) {
+                //This will output that the current number is divisible by 4
+                document.write("Divisible by 4" + "<br>");
+            //If the current index is divisible by 7, but not 4, this runs
+            } else if (i % 7 == 0) {
+                //This will output that the current number is divisible by 7, but not 4
+                document.write("Divisible by 7, but not 4" + "<br>");
+            //If all other cases fail, this runs
+            } else {
+                //This will output the number at the current index that is not divisible by neither 4 nor 7
+                document.write(i + "<br>");
+            }
+        }
+    //End of script element
+    </script>
+    <!--Separates exercises with a line across the page-->
+    <hr>
+    <!--Displays the exercise name underlined and above the output-->
+    <p><u>Exercise 2.3 - n-by-n Grid</u></p>
+    <!--When the webpage loads, the grid1() and grid2() functions will run-->
+    <body onload="grid1(), grid2()"></body>
+    <!--Specifies that the grid displayed is of size = 8-->
+    <p>Size = 8</p>
+    <!--Allows grid1 to be displayed with the scripting statements-->
+    <pre id="grid1"></pre>
+    <!--Specifies that the grid displayed is of size = 14-->
+    <p>Size = 14</p>
+    <!--Allows grid2 to be displayed with the scripting statements-->
+    <pre id="grid2"></pre>
+    <!--Beginning of script element which contains scripting statements-->
+    <script>
+        //Creates a function called grid1
+        function grid1() {
+            //Declares a variable "size" which is 8
+            let size = 8;
+            //Declares a variable "arrangement" which is blank
+            let arrangement = "";
+            /* i = 0 executes once before the execution of the code block
+            i < size executes for as long as the size is greater than i
+            i++ executes every time the code block has been executed
+            */
+            for (let i = 0; i < size; i++){
+                /* j = 0 executes once before the execution of the code block
+                j < size executes for as long as the size is greater than j
+                j++ executes every time the code block has been executed
+                */
+                for (let j = 0; j < size; j++) {
+                    //If the sum of i and j is even, this will run
+                    if ((i + j) % 2 == 0) {
+                        //The grid arrangement is appended with a " " 
+                        arrangement += " ";
+                    //If the sum of i and j is odd, this will run
+                    } else {
+                        //The grid arrangement is appended with a "*"
+                        arrangement += "*";
+                    }
+                }
+                //This will allow movement to the next row
+                arrangement += "\n";
+            }
+            //This will get the elements that need to be displayed by text using their unique identifier, "grid1"
+            document.getElementById("grid1").innerText = arrangement;
+        }
+        //Creates a function called grid2
+        function grid2() {
+            //Declares a variable "size" which is 14
+            let size = 14;
+            //Declares a variable "arrangement" which is blank
+            let arrangement = "";
+            /* i = 0 executes once before the execution of the code block
+            i < size executes for as long as the size is greater than i
+            i++ executes every time the code block has been executed
+            */
+            for (let i = 0; i < size; i++){
+                /* j = 0 executes once before the execution of the code block
+                j < size executes for as long as the size is greater than j
+                j++ executes every time the code block has been executed
+                */
+                for (let j = 0; j < size; j++) {
+                    //If the sum of i and j is even, this will run
+                    if ((i + j) % 2 == 0) {
+                        //The grid arrangement is appended with a " " 
+                        arrangement += " ";
+                    //If the sum of i and j is odd, this will run
+                    } else {
+                        //The grid arrangement is appended with a "*" 
+                        arrangement += "*";
+                    }
+                }
+                //This will allow movement to the next row
+                arrangement += "\n";
+            }
+            //This will get the elements that need to be displayed by text using their unique identifier, "grid2"
+            document.getElementById("grid2").innerText = arrangement;
+        }
+    //End of script element
+    </script>
+<!--End of html file-->
+</html>
