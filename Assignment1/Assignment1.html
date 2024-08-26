@@ -1,0 +1,49 @@
+<!--
+    Name of program contained in the file: Assignment1.html
+    Brief description of the program: "Hello World!" examples using JavaScript and HTML
+    Inputs: None
+    Output: Webpage with two test buttons. One test button produces an alert box, the other prints "Hello World!" on the webpage.
+    All collaborators: N/A
+    Other Sources for the Code: Stack Overflow, W3Schools
+    Author's full name: Nabeel Ahmad
+    Creation date: 01/18/2024
+-->
+
+<!--Beginning of html file-->
+<html>
+    <!--Beginning of head element which contains metadata (data about data)-->
+    <head>
+        <!--Allows the tab of the webpage to be labelled “Hello World!”-->
+        <title>Hello World!</title>
+    <!--End of head element-->
+    </head>
+    <!--Creates the first clickable button that when clicked, will run the "test1" function-->
+    <button onclick="test1()">Test 1 for Hello World!</button> <br>
+    <!--Allows text to be displayed by the second button-->
+    <br> <div id="hello"></div> <br>
+    <!--Allows text to be displayed by the second button-->
+    <div id="world"></div> <br>
+    <!--Creates a second clickable button that when clicked, will run the "test2" function-->
+    <button onclick="test2()">Test 2 for Hello World!</button> <br>
+    <!--Beginning of script element which contains scripting statements-->
+    <script>
+        //Creates a function called "test1"
+        function test1() {
+            //Uses the built-in JavaScript alert function which will run after the corresponding button is pressed
+            alert("Hello World!");
+        }
+        //Creates a function called "test2"
+        function test2() {
+            //This will get the elements that need to be displayed by text using their unique identifier, "hello"
+            var hello = document.getElementById("hello");
+            //This will get the elements that need to be displayed by text using their unique identifier, "world"
+            var world = document.getElementById("world");
+            //This will set the text to "Hello"
+            hello.innerText = "Hello";
+            //This will set the text to "World!"
+            world.innerText = "World!";
+        }
+        //End of script element
+        </script>
+<!--End of html file-->
+</html>
