@@ -1,0 +1,197 @@
+<!--
+    Name of program contained in the file: Assignment3.html
+    Brief description of the program: This program writes a class called Group and performs 6 methods.
+    Inputs: None
+    Output: Webpage with labeled outputs
+    All collaborators: N/A
+    Other Sources for the Code: Stack Overflow, W3Schools, "The Secret Life of JavaScript Objects" Canvas Slides
+    Author's full name: Nabeel Ahmad
+    Creation date: 02/12/2024
+-->
+
+<!--Beginning of html file-->
+<html>
+    <!--Displays the description above the output-->
+    <p>Contents of group1</p>
+    <!--Allows the results to be displayed with the scripting statements-->
+    <p id="group1_contents"></p>
+    <!--Separates with a line across the page-->
+    <hr>
+    <!--Displays the description above the output-->
+    <p>Contents of group2</p>
+    <!--Allows the results to be displayed with the scripting statements-->
+    <p id="group2_contents"></p>
+    <!--Separates with a line across the page-->
+    <hr>
+    <!--Displays the description above the output-->
+    <p>Results of group1.has(5)</p>
+    <!--Allows the results to be displayed with the scripting statements-->
+    <p id="group1_has"></p>
+    <!--Separates with a line across the page-->
+    <hr>
+    <!--Displays the description above the output-->
+    <p>Results of group2.has(3)</p>
+    <!--Allows the results to be displayed with the scripting statements-->
+    <p id="group2_has"></p>
+    <!--Separates with a line across the page-->
+    <hr>
+    <!--Displays the description above the output-->
+    <p>Results of group1.union(group2)</p>
+    <!--Allows the results to be displayed with the scripting statements-->
+    <p id="union"></p>
+    <!--Separates with a line across the page-->
+    <hr>
+    <!--Displays the description above the output-->
+    <p>Results of group1.intersection(group2)</p>
+    <!--Allows the results to be displayed with the scripting statements-->
+    <p id="intersection"></p>
+    <!--Separates with a line across the page-->
+    <hr>
+    <!--Displays the description above the output-->
+    <p>Results of group1.difference(group2)</p>
+    <!--Allows the results to be displayed with the scripting statements-->
+    <p id="difference"></p>
+    <!--Separates with a line across the page-->
+    <hr>
+    <!--Displays the description above the output-->
+    <p>Results of group1.delete(1)</p>
+    <!--Allows the results to be displayed with the scripting statements-->
+    <p id="group1_delete"></p>
+    <!--Separates with a line across the page-->
+    <hr>
+    <!--Displays the description above the output-->
+    <p>Results of group2.delete(1)</p>
+    <!--Allows the results to be displayed with the scripting statements-->
+    <p id="group2_delete"></p>
+    <!--Beginning of script element which contains scripting statements-->
+    <script>
+        //Creates a class called Group
+        class Group {
+            //This is a method for creating and initializing objects created within the class
+            constructor() {
+                //Creates an empty array
+                this.members = [];
+            }
+            //This method will add the value to the corresponding group.
+            add(value) {
+                //If the group does not have the inputted value, this will run
+                if (this.has(value) == false) {
+                    //This will add the inputted value to the group
+                    this.members.push(value);
+                }
+            }
+            //This method will delete the value from the corresponding group
+            delete(value) {
+                //If the group has the inputted value, this will run
+                if (this.has(value)) {
+                    //This will remove the value from the group
+                    this.members.splice(value - 1, 1);
+                }
+                //This will return the appended group
+                return this.members;
+            }
+            //This will determine if the inputted value is in the corresponding group
+            has(value) {
+                //This will return a boolean value to indicate if the inputted value is in the corresponding group
+                return this.members.includes(value)
+            }
+            //This will return the union of the group and the argument
+            union(two) {
+                //Declares an empty "newGroup" with the Group class
+                let newGroup = new Group();
+                //For every value of the first group this will run
+                for (let value of this.members) {
+                        //This will add the value to newGroup
+                        newGroup.add(value);
+                }
+                //For every value of the second group this will run
+                for (let value of two.members) {
+                    //If the group does not have the inputted value, this will run
+                    if (newGroup.has(value) == false) {
+                        //This will add the value to newGroup
+                        newGroup.add(value);
+                    }
+                }
+                //This will return newGroup
+                return newGroup;
+            }
+            //This will return the intersection of the group and the argument
+            intersection(two) {
+                //Declares an empty "newGroup" with the Group class
+                let newGroup = new Group();
+                //For every value of the first group this will run
+                for (let value of this.members) {
+                    //If the group does have the inputted value, this will run
+                    if (two.has(value)) {
+                        //This will add the value to newGroup
+                        newGroup.add(value);
+                    }
+                }
+                //This will return newGroup
+                return newGroup;
+            }
+            //This will return the difference of the group and the argument
+            difference(two) {
+                //Declares an empty "newGroup" with the Group class
+                let newGroup = new Group();
+                //For every value of the first group this will run
+                for (let value of this.members) {
+                    //If the group does not have the inputted value, this will run
+                    if (two.has(value) == false) {
+                        //This will add the value to newGroup
+                        newGroup.add(value);
+                    }
+                }
+                //This will return newGroup
+                return newGroup;
+            }
+            //This will return the group
+            print() {
+                //Returns the group
+                return this.members;
+            }
+        }
+        //Declares an empty "group1" with the Group class
+        let group1 = new Group();
+        //Declares an empty "group2" with the Group class
+        let group2 = new Group();
+        //Adds a value to group1
+        group1.add(1);
+        //Adds a value to group1
+        group1.add(2);
+        //Adds a value to group1
+        group1.add(3);
+        //Adds a value to group2
+        group2.add(2);
+        //Adds a value to group2
+        group2.add(3);
+        //Adds a value to group2
+        group2.add(5);
+        //Adds a value to group2
+        group2.add(2);
+        //This will get the elements that need to be displayed by text using their unique identifier
+        document.getElementById("group1_contents").innerText = group1.print();
+        //This will get the elements that need to be displayed by text using their unique identifier
+        document.getElementById("group2_contents").innerText = group2.print();
+        //This will get the elements that need to be displayed by text using their unique identifier
+        document.getElementById("group1_has").innerText = group1.has(5);
+        //This will get the elements that need to be displayed by text using their unique identifier
+        document.getElementById("group2_has").innerText = group2.has(3);
+        //This will get the elements that need to be displayed by text using their unique identifier
+        document.getElementById("union").innerText = group1.union(group2).print();
+        //This will get the elements that need to be displayed by text using their unique identifier
+        document.getElementById("intersection").innerText = group1.intersection(group2).print();
+        //This will get the elements that need to be displayed by text using their unique identifier
+        document.getElementById("difference").innerText = group1.difference(group2).print();
+        //This will run the delete method
+        group1.delete(1);
+        //This will run the delete method
+        group2.delete(1);
+        //This will get the elements that need to be displayed by text using their unique identifier
+        document.getElementById("group1_delete").innerText = group1.print();
+        //This will get the elements that need to be displayed by text using their unique identifier
+        document.getElementById("group2_delete").innerText = group2.print();
+    //End of script element
+    </script>
+<!--End of html file-->
+</html>
