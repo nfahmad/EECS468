@@ -1,0 +1,84 @@
+<!--
+    Name of program contained in the file: PieChart.html
+    Brief description of the program: This program creates two pie charts with two different data sets
+    Inputs: None
+    Output: Webpage with two labelled pie charts
+    All collaborators: N/A
+    Other Sources for the Code: Stack Overflow, W3Schools, "More on JavaScript Canvas" Canvas Slides
+    Author's full name: Nabeel Ahmad
+    Creation date: 03/18/2024
+-->
+
+<html>
+    <canvas id="canvas1" width="600" height="600"></canvas>
+    <canvas id="canvas2" width="600" height="600"></canvas>
+    <script>
+        //This binding contains an array of objects that represent the customer satisfaction data
+        const dataSet1 = 
+        [
+            {name: "Very happy", count: 63, color: "#01BEFE"}, 
+            {name: "Happy", count: 104, color: "#FFDD00"}, 
+            {name: "Neutral", count: 87, color: "#FF7D00"},
+            {name: "Unhappy", count: 51, color: "#FF006D"},
+            {name: "Very unhappy", count: 26, color: "#ADFF02"},
+            {name: "No comment", count: 18, color: "#8F00FF"}
+        ];
+        //This binding contains an array of objects that represent the customer satisfaction data
+        const dataSet2 = 
+        [
+            {name: "Satisfied", count: 213, color: "#01BEFE"}, 
+            {name: "Neutral", count: 927, color: "#FF7D00"},
+            {name: "Unsatisfied", count: 463, color: "#FF006D"},
+            {name: "No comment", count: 510, color: "#8F00FF"}
+        ];
+        //Creates a function for drawing the pie chart for any data set on any canvas
+        function drawPieChart(canvasId, dataSet, titleLabel)
+        {
+            //Retreives the canvas that is going to be drawn on
+            let cx = document.getElementById(canvasId).getContext("2d");
+            //Calculate the total
+            let total = dataSet.reduce((sum, {count}) => sum + count, 0);
+            //Start at the top
+            let currentAngle = -0.5 * Math.PI;
+            //Set the pie chart title label size
+            cx.font = "24px Arial";
+            //Display the pie chart title label
+            cx.fillText(titleLabel, 250, 570);
+            //Iterate through every result in dataSet
+            for (let result of dataSet)
+            {
+                //Determine the angle for the current slice
+                let sliceAngle = (result.count / total) * 2 * Math.PI;
+                //Begin drawing a path
+                cx.beginPath();
+                //Center = (300,300), radius = 200, from current angle, clockwise by slice's angle
+                cx.arc(300, 300, 200, currentAngle, currentAngle + sliceAngle);
+                //Determine the angle to place the name of the slice
+                nameAngle = currentAngle + sliceAngle/2;
+                //Adjust the current angle based on the slice angle
+                currentAngle += sliceAngle;
+                //Connect the line to the center
+                cx.lineTo(300, 300);
+                //Set the fill color for the slice
+                cx.fillStyle = result.color;
+                //Fill the slice with a color
+                cx.fill();
+                //Determine the correct x location to place the names of the slice
+                let nameX = 270 + Math.cos(nameAngle) * 250;
+                //Determine the correct y location to place the names of the slice
+                let nameY = 320 + Math.sin(nameAngle) * 250;
+                //Set the color of the names of slice
+                cx.fillStyle = "black";
+                //Set the size of the names of slice
+                cx.font = "12px Arial";
+                //Display the names of slices
+                cx.fillText(result.name, nameX, nameY);
+            }
+        }
+        //Draw the pie chart for data set 1
+        drawPieChart("canvas1", dataSet1, "Data Set 1");
+        //Draw the pie chart for data set 2
+        drawPieChart("canvas2", dataSet2, "Data Set 2");
+    //End of script element
+    </script>
+</html>
