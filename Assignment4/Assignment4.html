@@ -1,0 +1,74 @@
+<!--
+    Name of program contained in the file: Assignment4.html
+    Brief description of the program: This program implements a simple tabbed interface using JavaScript and HTML
+    Inputs: None
+    Output: Webpage with tabs labeled "Rock", "Chalk", "Jayhawk", and "Go KU!"
+    All collaborators: N/A
+    Other Sources for the Code: Stack Overflow, W3Schools
+    Author's full name: Nabeel Ahmad
+    Creation date: 02/19/2024
+-->
+
+<html>
+    <title>Ahmad's Go KU! Page</title>
+    <tab-panel>
+        <div data-tabname="Rock">Rock ...</div>
+        <div data-tabname="Chalk">Rock Chalk ...</div>
+        <div data-tabname="Jayhawk">Rock Chalk Jayhawk ...</div>
+        <div data-tabname="Go KU!">Rock Chalk Jayhawk - Go KU!</div>
+    </tab-panel>
+    <script>
+        //Creates a function called asTabs that takes a DOM node as an argument
+        function asTabs(node) {
+            //Create a new div element to hold the tab buttons
+            let buttonDiv = document.createElement("div")
+            //Iterate through each child element of the node
+            for (let element of node.children) {
+                //Create a new button element
+                let button = document.createElement("button");
+                //Set the inner text of the button to the value of the data-tabname attribute of the current child element
+                button.innerText = element.getAttribute("data-tabname");
+                //If the inner text of the button is "Rock", this will run
+                if (button.innerText == "Rock") {
+                    //Set the color of the button text to blue
+                    button.style.color = "blue";
+                //If the inner text of the button is not "Rock", this will run
+                } else {
+                    //Set the color of the button text to red
+                    button.style.color = "red";
+                    //Hide the current child element
+                    element.style.display = "none"
+                }
+                //Append the button to the buttonDiv
+                buttonDiv.appendChild(button);
+                //Add a click event listener to the button
+                button.addEventListener("click", () => {
+                    //Iterate through each child element of the buttonDiv
+                    for (let element of buttonDiv.children) {
+                        //Set the color of each button text to red
+                        element.style.color = "red";
+                    }
+                    //Set the text color of the clicked button to blue
+                    button.style.color = "blue";
+                    //Iterate through each child element of the node
+                    for (let element of node.children) {
+                        //Determine if the current element is the buttonDiv
+                        if (element === buttonDiv) {
+                            //If the current element is the buttonDiv, skip
+                            continue
+                        }
+                        //Hide the current element
+                        element.style.display = "none"
+                    }
+                    //Display the current child element
+                    element.style.display = "initial"
+                });
+            }
+            //Insert the buttonDiv at the beginning of the node (top of webpage)
+            node.prepend(buttonDiv)            
+        }
+        //Run the asTabs function with the DOM node representing the "tab-panel" element
+        asTabs(document.querySelector("tab-panel"));
+    //End of script element
+    </script>
+</html>
